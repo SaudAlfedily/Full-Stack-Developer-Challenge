@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 public class CarShowroom {
@@ -25,11 +27,13 @@ public class CarShowroom {
 
     @Size(max = 100, message = "Manager name can be at most 100 characters")
     private String managerName;
-//don't forget  test -- and num and the leading zero
     @NotNull(message = "Contact number is required")
     @Pattern(regexp = "^[0-9]{1,15}$", message = "Contact number must be numeric and up to 15 digits")
     private String contactNumber;
 
     @Size(max = 255, message = "Address can be at most 255 characters")
     private String address;
+
+    @OneToMany(mappedBy = "showroom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Car> cars;
 }
