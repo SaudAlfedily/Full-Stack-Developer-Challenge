@@ -1,19 +1,12 @@
-package com.example.fullstackdeveloperchallenge.Model;
+package com.example.fullstackdeveloperchallenge.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
-@Entity
 @Data
-public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class CarDTO {
     @NotEmpty(message = "VIN is required")
     @Size(max = 25, message = "VIN should not exceed 25 characters")
     private String vin;
@@ -34,8 +27,6 @@ public class Car {
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be greater than 0")
     private BigDecimal price;
 
-
-    @ManyToOne
-    @JoinColumn(name = "car_showroom_id", nullable = false)
-    private CarShowroom showroom;
+    @NotNull
+    private Long showroomId;
 }
