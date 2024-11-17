@@ -18,8 +18,8 @@ public class CarShowroomController {
 
     @PostMapping
     public ResponseEntity<CarShowroom> createShowroom(@RequestBody @Valid CarShowroom showroom) {
-        carShowroomService.createShowroom(showroom);
-        return ResponseEntity.status(200).body(showroom);
+
+        return ResponseEntity.status(200).body(carShowroomService.createShowroom(showroom));
     }
 
     @GetMapping

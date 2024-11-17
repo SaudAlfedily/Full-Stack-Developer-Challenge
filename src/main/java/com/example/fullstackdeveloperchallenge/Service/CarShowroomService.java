@@ -6,7 +6,6 @@ import com.example.fullstackdeveloperchallenge.DTO.CarShowroomUpdateDTO;
 import com.example.fullstackdeveloperchallenge.Model.CarShowroom;
 import com.example.fullstackdeveloperchallenge.Repository.CarShowroomRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +23,7 @@ public class CarShowroomService {
     private final ObjectMapper objectMapper;
 
 
-    public CarShowroom createShowroom(@Valid CarShowroom showroom) {
+    public CarShowroom createShowroom( CarShowroom showroom) {
         try{
         if (carShowroomRepository.existsByCommercialRegistrationNumber(showroom.getCommercialRegistrationNumber())) {
             throw new ApiException("Commercial registration number must be unique");
@@ -52,8 +51,7 @@ public class CarShowroomService {
     public CarShowroom GetSpecificCarShowroom(Long id) {
         Optional<CarShowroom> optionalCarShowroom = carShowroomRepository.findByIdAndActiveTrue(id);
         if (optionalCarShowroom.isPresent()) {
-            CarShowroom showroom = optionalCarShowroom.get();
-            return showroom;
+            return optionalCarShowroom.get();
         } else {
             throw new ApiException("Showroom not found with id " + id);
         }
