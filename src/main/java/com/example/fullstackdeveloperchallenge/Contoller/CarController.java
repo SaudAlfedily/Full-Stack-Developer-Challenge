@@ -16,10 +16,9 @@ import org.springframework.web.bind.annotation.*;
 public class CarController {
     private final CarService carService;
 
-    @PostMapping
-    public ResponseEntity<Car> createCar(@RequestBody @Valid CarDTO carDTO) {
-        return ResponseEntity.ok().body(carService.createCar(carDTO));
-
+    @PostMapping({"/{id}"})
+    public ResponseEntity<Car> createCar(@RequestBody @Valid CarDTO carDTO,@PathVariable String id) {
+        return ResponseEntity.ok().body(carService.createCar(carDTO,id));
     }
     @GetMapping
     public ResponseEntity<Page<CarWithShowroomDTO>> listOfCars(

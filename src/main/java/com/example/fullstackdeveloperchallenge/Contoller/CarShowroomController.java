@@ -36,19 +36,19 @@ public class CarShowroomController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<CarShowroom> getSpecificShowroom(@PathVariable Long id) {
+    public ResponseEntity<CarShowroom> getSpecificShowroom(@PathVariable String id) {
 
         return ResponseEntity.ok(carShowroomService.GetSpecificCarShowroom(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CarShowroom> updateShowroom(@PathVariable Long id, @RequestBody CarShowroomUpdateDTO carShowroomUpdateDTO) {
+    public ResponseEntity<CarShowroom> updateShowroom(@PathVariable String id, @RequestBody CarShowroomUpdateDTO carShowroomUpdateDTO) {
         return ResponseEntity.ok(carShowroomService.updateCarShowroom(id, carShowroomUpdateDTO));
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteShowroom(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteShowroom(@PathVariable String id) {
 
         carShowroomService.softDeleteShowroom(id);
         return ResponseEntity.noContent().build();

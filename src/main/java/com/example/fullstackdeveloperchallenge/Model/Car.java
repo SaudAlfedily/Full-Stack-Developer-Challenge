@@ -32,10 +32,10 @@ public class Car {
 
     @NotNull(message = "Price is required")
     @DecimalMin(value = "0.00", inclusive = false, message = "Price must be greater than 0")
-    private BigDecimal price;
+    private double price;
 
 
     @ManyToOne
-    @JoinColumn(name = "car_showroom_id", nullable = false)
+    @JoinColumn(name = "car_showroom_commercial_registration_number", nullable = false)
     private CarShowroom showroom;
 }

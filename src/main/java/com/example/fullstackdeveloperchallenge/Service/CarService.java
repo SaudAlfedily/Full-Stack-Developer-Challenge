@@ -25,9 +25,9 @@ public class CarService {
     private final CarRepository carRepository;
     private final ObjectMapper objectMapper;
 
-    public Car createCar(@Valid CarDTO carDTO) {
-        CarShowroom showroom = carShowroomRepository.findByIdAndActiveTrue(carDTO.getShowroomId())
-                .orElseThrow(() -> new EntityNotFoundException("Showroom not found with ID " + carDTO.getShowroomId()));
+    public Car createCar(@Valid CarDTO carDTO,String id) {
+        CarShowroom showroom = carShowroomRepository.findByCommercialRegistrationNumberAndActiveTrue(id)
+                .orElseThrow(() -> new EntityNotFoundException("Showroom not found with ID " + id));
 
         try {
             if (carRepository.existsByVin(carDTO.getVin())) {

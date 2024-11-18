@@ -11,7 +11,9 @@ import java.util.Optional;
 @Repository
 public interface CarShowroomRepository extends JpaRepository<CarShowroom, Long> {
    boolean existsByCommercialRegistrationNumber(String commercialRegistrationNumber);
-    Optional<CarShowroom> findByIdAndActiveTrue(Long id);
+
     Page<CarShowroom> findByActiveTrue(Pageable pageable);
+    Optional<CarShowroom> findByCommercialRegistrationNumberAndActiveTrue(String id);
+
 
 }

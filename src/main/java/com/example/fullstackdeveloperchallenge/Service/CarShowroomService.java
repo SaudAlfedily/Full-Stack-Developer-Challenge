@@ -48,17 +48,17 @@ public class CarShowroomService {
         return showroomsPage.map(showroom -> objectMapper.convertValue(showroom, CarShowroomDTO.class));
     }
 
-    public CarShowroom GetSpecificCarShowroom(Long id) {
-        Optional<CarShowroom> optionalCarShowroom = carShowroomRepository.findByIdAndActiveTrue(id);
+    public CarShowroom GetSpecificCarShowroom(String commercialRegistrationNumber) {
+        Optional<CarShowroom> optionalCarShowroom = carShowroomRepository.findByCommercialRegistrationNumberAndActiveTrue(commercialRegistrationNumber);
         if (optionalCarShowroom.isPresent()) {
             return optionalCarShowroom.get();
         } else {
-            throw new ApiException("Showroom not found with id " + id);
+            throw new ApiException("Showroom not found with   commercialRegistrationNumber " + commercialRegistrationNumber);
         }
     }
 
-    public CarShowroom updateCarShowroom(Long id, CarShowroomUpdateDTO carShowroomUpdateDTO) {
-        Optional<CarShowroom> optionalCarShowroom = carShowroomRepository.findByIdAndActiveTrue(id);
+    public CarShowroom updateCarShowroom(String commercialRegistrationNumber, CarShowroomUpdateDTO carShowroomUpdateDTO) {
+        Optional<CarShowroom> optionalCarShowroom = carShowroomRepository.findByCommercialRegistrationNumberAndActiveTrue(commercialRegistrationNumber);
         if (optionalCarShowroom.isPresent()) {
             CarShowroom showroom = optionalCarShowroom.get();
             showroom.setContactNumber(carShowroomUpdateDTO.getContactNumber());
@@ -67,20 +67,20 @@ public class CarShowroomService {
             carShowroomRepository.save(showroom);
             return showroom;
         } else {
-            throw new ApiException("Showroom not found with id " + id);
+            throw new ApiException("Showroom not found with id " + commercialRegistrationNumber);
 
         }
 
     }
 
-    public void softDeleteShowroom(Long id) {
-        Optional<CarShowroom> optionalCarShowroom = carShowroomRepository.findByIdAndActiveTrue(id);
+    public void softDeleteShowroom(String commercialRegistrationNumber) {
+        Optional<CarShowroom> optionalCarShowroom = carShowroomRepository.findByCommercialRegistrationNumberAndActiveTrue(commercialRegistrationNumber);
         if (optionalCarShowroom.isPresent()) {
             CarShowroom showroom = optionalCarShowroom.get();
             showroom.setActive(false);
             carShowroomRepository.save(showroom);
         } else {
-            throw new ApiException("Showroom not found with id " + id);
+            throw new ApiException("Showroom not found with commercialRegistrationNumber id " + commercialRegistrationNumber);
         }
     }
 }

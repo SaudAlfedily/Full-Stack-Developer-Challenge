@@ -16,9 +16,6 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 public class CarShowroom {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @NotBlank(message = "Name is required")
     @Size(max = 100, message = "Name can be at most 100 characters")
@@ -28,6 +25,7 @@ public class CarShowroom {
     @Size(min = 10, max = 10, message = "Commercial registration number must be unique and exactly 10 digits")
     @Column(unique = true)
     @Pattern(regexp = "^[0-9]{10}$", message = "Contact number must be numeric and up to 15 digits")
+    @Id
     private String commercialRegistrationNumber;
 
     @Size(max = 100, message = "Manager name can be at most 100 characters")
