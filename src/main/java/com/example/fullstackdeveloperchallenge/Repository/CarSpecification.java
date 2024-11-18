@@ -1,6 +1,5 @@
 package com.example.fullstackdeveloperchallenge.Repository;
 
-import com.example.fullstackdeveloperchallenge.DTO.CarWithShowroomDTO;
 import com.example.fullstackdeveloperchallenge.Model.Car;
 import com.example.fullstackdeveloperchallenge.Model.CarShowroom;
 import jakarta.persistence.criteria.*;
@@ -10,10 +9,9 @@ public class CarSpecification {
     public static Specification<Car> withFilters(String vin, String maker, String model, Integer modelYear,
                                                  Double price, String showroomName, String contactNumber) {
         return (root, query, builder) -> {
-            // Base predicate
-            Predicate predicate = builder.conjunction(); // Initialize with "true"
+            Predicate predicate = builder.conjunction();
 
-// Apply filters with partial matching for all fields
+
             if (vin != null && !vin.isEmpty()) {
                 predicate = builder.and(predicate, builder.like(root.get("vin"), "%" + vin + "%"));
             }
@@ -31,7 +29,7 @@ public class CarSpecification {
             }
 
             if (price != null) {
-                predicate = builder.and(predicate, builder.equal(root.get("price"), price)); // Use exact match
+                predicate = builder.and(predicate, builder.equal(root.get("price"), price));
             }
 
             if (showroomName != null && !showroomName.isEmpty()) {
@@ -44,7 +42,7 @@ public class CarSpecification {
                 predicate = builder.and(predicate, builder.like(showroomJoin.get("contactNumber"), "%" + contactNumber + "%"));
             }
 
-// Return the combined predicate
+
             return predicate;
 
         };

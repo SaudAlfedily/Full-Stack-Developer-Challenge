@@ -1,12 +1,9 @@
 package com.example.fullstackdeveloperchallenge.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
-
-import java.math.BigDecimal;
-
 @Entity
 @Data
 public class Car {
