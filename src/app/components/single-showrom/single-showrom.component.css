@@ -1,0 +1,30 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+  }
+  
+  nz-card {
+    background: #ffffff; /* White background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+  }
+  
+  p {
+    margin-bottom: 16px; /* Space between paragraphs */
+  }
+  
+  strong {
+    font-weight: 600; /* Slightly bold for emphasis */
+  }
+  
+  span {
+    color: #595959; /* Neutral text color */
+  }
+  
+  nz-tag {
+    font-weight: bold; /* Bold status tags */
+  }
+  

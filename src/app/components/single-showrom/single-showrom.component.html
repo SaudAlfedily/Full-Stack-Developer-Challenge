@@ -1,0 +1,43 @@
+<div *ngIf="showroom; else loadingOrError" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f2f5;">
+    <nz-card
+      nzTitle="Showroom Details"
+      [nzBordered]="true"
+      style="max-width: 600px; width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"
+    >
+      <div style="font-size: 16px; line-height: 1.6;">
+        <p>
+          <strong>name:</strong>
+          <span style="color: #595959;">{{ showroom.name }}</span>
+        </p>
+        <p>
+          <strong>Commercial Registration Number:</strong>
+          <span style="color: #595959;">{{ showroom.commercialRegistrationNumber }}</span>
+        </p>
+        <p>
+          <strong>Manager Name:</strong>
+          <span style="color: #595959;">{{ showroom.managerName || 'N/A' }}</span>
+        </p>
+        <p>
+          <strong>Contact Number:</strong>
+          <span style="color: #595959;">{{ showroom.contactNumber }}</span>
+        </p>
+        <p>
+          <strong>Address:</strong>
+          <span style="color: #595959;">{{ showroom.address || 'N/A' }}</span>
+        </p>
+      </div>
+    </nz-card>
+  </div>
+  
+  <ng-template #loadingOrError>
+    <div style="text-align: center; padding: 40px; min-height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #f0f2f5;">
+      <div>
+        <p *ngIf="errorMessage" style="color: red; font-size: 16px; font-weight: bold;">
+          {{ errorMessage }}
+        </p>
+        <p *ngIf="!errorMessage" style="font-size: 16px; color: #595959;">Loading showroom details...</p>
+        <nz-spin nzTip="Loading..." *ngIf="!errorMessage"></nz-spin>
+      </div>
+    </div>
+  </ng-template>
+  

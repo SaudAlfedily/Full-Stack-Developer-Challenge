@@ -1,0 +1,47 @@
+<nz-card>
+    <!-- Header -->
+    <div class="table-header">
+      <h2>Showrooms</h2>
+      <button nz-button nzType="primary" [routerLink]="['/showrooms/add']">Add Showroom</button>
+    </div>
+  
+    <!-- Table -->
+    <nz-table
+      [nzData]="showrooms"
+      [nzBordered]="true"
+      [nzLoading]="loading"
+      [nzSize]="'middle'"
+     >
+      <thead>
+        <tr>
+          <th >Name</th>
+          <th>CR Number</th>
+          <th>Contact</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let showroom of showrooms">
+          <td>{{ showroom.name }}</td>
+          <td>{{ showroom.commercialRegistrationNumber }}</td>
+          <td>{{ showroom.contactNumber }}</td>
+          <td>
+            <button nz-button nzType="link" [routerLink]="['/cars/add',showroom.commercialRegistrationNumber]" >Add Car</button>
+            <button nz-button nzType="link" [routerLink]="['/showrooms', showroom.commercialRegistrationNumber]" >View</button>
+            <button nz-button nzType="link" [routerLink]="['/showrooms', showroom.id, 'cars']" >View Cars</button>
+            <button nz-button nzType="link"   [routerLink]="['/showrooms/update', showroom.commercialRegistrationNumber]">Edit</button>
+            <button nz-button nzType="text" nzDanger (click)="deleteShowroom(showroom.commercialRegistrationNumber)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  
+    <!-- Pagination -->
+    <nz-pagination
+      [nzPageSize]="pageSize"
+      [nzTotal]="totalElements"
+      [(nzPageIndex)]="pageIndex"
+      (nzPageIndexChange)="onPageChange($event)">
+    </nz-pagination>
+  </nz-card>
+  

@@ -1,0 +1,66 @@
+<nz-card
+  nzTitle="Add New Car"
+  [nzBordered]="true"
+  style="max-width: 600px; margin: 20px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"
+>
+  <form [formGroup]="addCarForm" nz-form nzLayout="vertical" (ngSubmit)="onSubmit()">
+    <!-- VIN -->
+    <nz-form-item>
+      <nz-form-label nzFor="vin" [nzRequired]="true">VIN</nz-form-label>
+      <nz-form-control [nzErrorTip]="'VIN is required and must not exceed 25 characters'">
+        <input id="vin" nz-input formControlName="vin" placeholder="Enter VIN" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Maker -->
+    <nz-form-item>
+      <nz-form-label nzFor="maker" [nzRequired]="true">Maker</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Maker is required and must not exceed 25 characters'">
+        <input id="maker" nz-input formControlName="maker" placeholder="Enter Maker" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Model -->
+    <nz-form-item>
+      <nz-form-label nzFor="model" [nzRequired]="true">Model</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Model is required and must not exceed 25 characters'">
+        <input id="model" nz-input formControlName="model" placeholder="Enter Model" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Model Year -->
+    <nz-form-item>
+      <nz-form-label nzFor="modelYear" [nzRequired]="true">Model Year</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Model year is required and must be >= 1886'">
+        <input
+          id="modelYear"
+          nz-input
+          type="number"
+          formControlName="modelYear"
+          placeholder="Enter Model Year"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Price -->
+    <nz-form-item>
+      <nz-form-label nzFor="price" [nzRequired]="true">Price</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Price is required and must be greater than 0'">
+        <input
+          id="price"
+          nz-input
+          type="number"
+          formControlName="price"
+          placeholder="Enter Price"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Submit Button -->
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!addCarForm.valid">Add Car</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-card>

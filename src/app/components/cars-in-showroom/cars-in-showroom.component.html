@@ -1,0 +1,120 @@
+<nz-card
+  nzTitle="Cars in Showroom"
+  [nzBordered]="true"
+  style="max-width: 1000px; margin: 20px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"
+>
+  <!-- Filters -->
+  <form [formGroup]="filterForm" style="margin-bottom: 20px;">
+    <nz-row [nzGutter]="50">
+      <!-- VIN -->
+      <nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label nzFor="vin" >VIN</nz-form-label>
+          <nz-form-control>
+            <input id="vin" nz-input formControlName="vin" placeholder="Filter by VIN" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <!-- Maker -->
+      <nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label nzFor="maker">Maker</nz-form-label>
+          <nz-form-control>
+            <input id="maker" nz-input formControlName="maker" placeholder="Filter by Maker" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <!-- Model -->
+      <nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label nzFor="model">Model</nz-form-label>
+          <nz-form-control>
+            <input id="model" nz-input formControlName="model" placeholder="Filter by Model" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <!-- Price -->
+      <nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label nzFor="price">Price</nz-form-label>
+          <nz-form-control>
+            <input id="price" nz-input formControlName="price" placeholder="Filter by Price" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+    <nz-row [nzGutter]="16">
+      <!-- Model Year -->
+      <nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label nzFor="modelYear">Model Year</nz-form-label>
+          <nz-form-control>
+            <input id="modelYear" nz-input formControlName="modelYear" placeholder="Filter by Model Year" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <!-- Showroom Name -->
+      <nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label nzFor="showroomName">Showroom Name</nz-form-label>
+          <nz-form-control>
+            <input id="showroomName" nz-input formControlName="showroomName" placeholder="Filter by Showroom Name" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+      <!-- Contact Number -->
+      <nz-col [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label nzFor="contactNumber">Contact Number</nz-form-label>
+          <nz-form-control>
+            <input id="contactNumber" nz-input formControlName="contactNumber" placeholder="Filter by Contact Number" />
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+  </form>
+
+  <!-- Cars Table -->
+  <nz-table
+    [nzData]="cars"
+    [nzBordered]="true"
+    [nzSize]="'middle'"
+    [nzLoading]="loading"
+    [nzScroll]="{ x: '1000px' }"
+    [nzShowPagination]="false"
+  >
+    <thead>
+      <tr>
+        <th nzWidth="15%">VIN</th>
+        <th nzWidth="15%">Maker</th>
+        <th nzWidth="15%">Model</th>
+        <th nzWidth="10%">Model Year</th>
+        <th nzWidth="15%">Price</th>
+        <th nzWidth="20%">Showroom</th>
+        <th nzWidth="10%">Contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of cars">
+        <td>{{ car.vin }}</td>
+        <td>{{ car.maker }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.modelYear }}</td>
+        <td>{{ car.price | currency }}</td>
+        <td>{{ car.showroomName }}</td>
+        <td>{{ car.contactNumber }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <!-- Pagination -->
+  <nz-pagination
+    [nzPageSize]="pageSize"
+    [nzTotal]="totalItems"
+    [(nzPageIndex)]="currentPage"
+    (nzPageIndexChange)="onPageChange($event)"
+  ></nz-pagination>
+</nz-card>
+
+
+

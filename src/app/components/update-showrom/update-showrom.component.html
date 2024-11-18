@@ -1,0 +1,53 @@
+<nz-card
+  nzTitle="Update Showroom Details"
+  [nzBordered]="true"
+  style="max-width: 600px; margin: 20px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"
+>
+  <form [formGroup]="updateForm" nz-form nzLayout="vertical" (ngSubmit)="onSubmit()">
+    <!-- Manager Name -->
+    <nz-form-item>
+      <nz-form-label nzFor="managerName">Manager Name</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Manager name can be at most 100 characters'">
+        <input
+          id="managerName"
+          nz-input
+          formControlName="managerName"
+          placeholder="Enter Manager Name"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Contact Number -->
+    <nz-form-item>
+      <nz-form-label nzFor="contactNumber" [nzRequired]="true">Contact Number</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Contact number must be numeric and up to 15 digits'">
+        <input
+          id="contactNumber"
+          nz-input
+          formControlName="contactNumber"
+          placeholder="Enter Contact Number"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Address -->
+    <nz-form-item>
+      <nz-form-label nzFor="address">Address</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Address can be at most 255 characters'">
+        <textarea
+          id="address"
+          nz-input
+          formControlName="address"
+          placeholder="Enter Address"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- Submit Button -->
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!updateForm.valid">Update</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-card>

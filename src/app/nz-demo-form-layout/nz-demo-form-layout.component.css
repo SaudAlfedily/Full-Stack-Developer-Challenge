@@ -1,0 +1,65 @@
+/* Ensure the form container has a max width and is centered */
+[nz-form]:not(.ant-form-inline):not(.ant-form-vertical) {
+    max-width: 600px; /* Limit form width */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px; /* Add some padding for better aesthetics */
+    border: 1px solid #d9d9d9; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  /* Form items spacing */
+  .nz-form-item {
+    margin-bottom: 16px; /* Space between form items */
+  }
+  
+  /* Labels styling */
+  .nz-form-label {
+    font-weight: bold; /* Make labels bold */
+    color: #595959; /* Dark gray color for labels */
+  }
+  
+  /* Input and controls styling */
+  .nz-form-control {
+    display: flex; /* Ensure proper layout for controls */
+    align-items: center; /* Align inputs vertically */
+  }
+  
+  /* Button styling */
+  button[nz-button] {
+    width: 100%; /* Full-width buttons */
+    height: 40px; /* Consistent button height */
+    font-size: 16px; /* Larger font for buttons */
+  }
+  
+  button[nz-button][nzType="primary"] {
+    background-color: #1890ff; /* Primary blue */
+    color: #ffffff; /* White text */
+    border: none; /* Remove border */
+  }
+  
+  button[nz-button][nzType="primary"]:hover {
+    background-color: #40a9ff; /* Slightly lighter blue on hover */
+  }
+  
+  button[nz-button][nzType="primary"]:disabled {
+    background-color: #d9d9d9; /* Light gray for disabled button */
+    color: #8c8c8c; /* Gray text for disabled button */
+    cursor: not-allowed; /* Show disabled cursor */
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    [nz-form]:not(.ant-form-inline):not(.ant-form-vertical) {
+      padding: 10px; /* Reduce padding */
+    }
+  
+    .nz-form-label {
+      font-size: 14px; /* Smaller label text */
+    }
+  
+    button[nz-button] {
+      font-size: 14px; /* Smaller button text */
+    }
+  }
